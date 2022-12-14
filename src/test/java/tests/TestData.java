@@ -3,7 +3,7 @@ package tests;
 import java.util.Random;
 
 public class TestData {
-    static Random random = new Random;
+    static Random random = new Random();
 
 
     public static String genderRandom() {
@@ -13,7 +13,7 @@ public class TestData {
     }
 
     public static String monthRandom() {
-        String[] month = {"January", "Febuary", "March", "Aprile", "May", "June",
+        String[] month = {"January", "February", "March", "April", "May", "June",
                 "July", "Auguste", "September", "November", "October", "December"};
         int index = random.nextInt(month.length);
         return month[index];
@@ -24,5 +24,11 @@ public class TestData {
                 "Economic", "Social Studies"};
         int index = random.nextInt(sobject.length);
         return sobject[index];
+    }
+
+    public static String hobbiesRandom() {
+        String[] hobbies = {"Music", "Sports", "Reading"};
+        int index = random.nextInt(hobbies.length);
+        return hobbies[index];
     }
 }

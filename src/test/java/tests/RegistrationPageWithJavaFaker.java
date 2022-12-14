@@ -3,27 +3,28 @@ package tests;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 
-import static tests.TestData.genderRandom;
-import static tests.TestData.sobjectRandom;
+import static tests.TestData.*;
 
 public class RegistrationPageWithJavaFaker extends TestBase {
 
     @Test
     void StudentRegistrationForm() {
         Faker faker = new Faker();
-        String firstName = faker.name().firstName();
-        String lastName = faker.name().lastName();
-        String email = faker.internet().emailAddress();
-        String gender = genderRandom();
-        String phone = faker.phoneNumber().subscriberNumber(10);
-        String birthDay = faker.date().toString();
-        String birthMonth = faker.;
-        String birthYear = faker.;
-        String firstSubjects = sobjectRandom();
-        String secondSubjects = sobjectRandom();
-        String hobbies = faker.su;
-        String picture = "dog.jpeg";
-        String currentAddress = faker.address().fullAddress();
+        String firstName = faker.name().firstName(),
+                lastName = faker.name().lastName(),
+                email = faker.internet().emailAddress(),
+                gender = genderRandom(),
+                phone = faker.phoneNumber().subscriberNumber(10),
+                birthDay = String.format("%02d", faker.number().numberBetween(1,28)),
+                birthMonth =  monthRandom(),
+                birthYear = String.valueOf(faker.number().numberBetween(1970, 2010)),
+                firstSubjects = sobjectRandom(),
+                secondSubjects = sobjectRandom(),
+                hobbies = hobbiesRandom(),
+                picture = "dog.jpeg",
+                currentAddress = faker.address().fullAddress(),
+                state = "Rajasthan",
+                city = "Jaiselmer";
 
 
         registrationPage.openPage()
@@ -37,20 +38,20 @@ public class RegistrationPageWithJavaFaker extends TestBase {
                 .setHobbies(hobbies)
                 .uploadPicture(picture)
                 .setAddress(currentAddress)
-                .setState()
-                .setCity()
+                .setState(state)
+                .setCity(city)
                 .submitForm()
                 .verifyResultsModalAppears()
                 .verifyResult("Student Name", firstName + " " + lastName)
                 .verifyResult("Student Email", email)
-                .verifyResult("Gender", "Male")
+                .verifyResult("Gender", gender)
                 .verifyResult("Mobile", phone)
-                .verifyResult("Date of Birth", "30 June,2008")
-                .verifyResult("Subjects", "English, Maths")
-                .verifyResult("Hobbies", "Music")
-                .verifyResult("Picture", "dog.jpeg")
+                .verifyResult("Date of Birth",  birthDay + " " + birthMonth + "," + birthYear)
+                .verifyResult("Subjects", firstSubjects + ", " + secondSubjects)
+                .verifyResult("Hobbies", hobbies)
+                .verifyResult("Picture", picture)
                 .verifyResult("Address", currentAddress)
-                .verifyResult("State and City", "Rajasthan Jaiselmer");
+                .verifyResult("State and City", state + " " + city);
         //checking the data after sending
     }
 }

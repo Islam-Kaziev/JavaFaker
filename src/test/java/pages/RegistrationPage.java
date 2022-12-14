@@ -20,7 +20,7 @@ public class RegistrationPage {
             dateOfBirthInput = $("#dateOfBirthInput"),
             subjectsInput = $("#subjectsInput"),
             userEmail = $("#userEmail"),
-            gender = $("#gender-radio-1"),
+            genderInput = $("#genterWrapper"),
             userNumber = $("#userNumber");
 
     public RegistrationPage openPage() {
@@ -47,8 +47,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setGender(String value) {
-        gender.doubleClick();
+    public RegistrationPage setGender(String gender) {
+        genderInput.$(byText(gender)).click();
 
         return this;
     }
@@ -105,14 +105,14 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setState() {
+    public RegistrationPage setState(String state) {
         $("#state").click();
         $("#react-select-3-option-3").click();
 
         return this;
     }
 
-    public RegistrationPage setCity() {
+    public RegistrationPage setCity(String city) {
         $("#city").click();
         $("#react-select-4-option-1").click();
 
